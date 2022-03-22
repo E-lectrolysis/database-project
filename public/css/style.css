@@ -1,0 +1,78 @@
+.home-items {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin:auto;
+}
+
+body.home-body {
+    display: block;
+    margin:auto;
+    align-content: center;
+    justify-content: center;
+}
+
+.monsters-container{
+}
+
+ul.monsters {
+    margin: 0 auto;
+    text-align: center;
+}
+
+li.monster {
+    display: inline-block;
+    vertical-align: center;
+    margin: 50px;
+}
+
+dl {
+    align-self:left;
+    width:80%;
+}
+dt {
+    font-weight: bold;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+}
+
+li.paddeded {
+    display: inline-block;
+    padding: 20px;
+    margin: 2px;
+}
+
+.loot-grid {
+    align-self: left;
+    padding: auto;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+.bordered {
+    border-collapse: collapse;
+    border: 1px solid;
+    border-color: gray;
+}
+
+table.body-parts {
+    border-collapse: collapse;
+    border: 1px solid;
+    border-color: gray;
+}
+
+.rows-only {
+    border-collapse: collapse;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: gray;
+}

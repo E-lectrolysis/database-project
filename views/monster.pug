@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title
+    meta(name="author" content="")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href="/css/style.css" rel="stylesheet")
+  body
+    h1 #{monster.name} 
+    div.monster-info
+        dl
+            dt Category
+            dd #{monster.category}
+            dt Threat Level
+            dd #{monster.threat_level}
+
+        dl
+            dt Description
+            dd #{monster.description}
+    h2 Body Parts
+    p Higher number = more damage taken from the respective type
+    div.hitzone-container
+        table.bordered
+            tr.bordered
+                th.bordered Part
+                th.bordered Sever
+                th.bordered Blunt
+                th.bordered Shot
+                th.bordered Fire
+                th.bordered Water
+                th.bordered Thunder
+                th.bordered Ice
+                th.bordered Dragon
+            each part in hitzones
+                tr.bordered
+                    td.bordered #{part.body_part}
+                    td.bordered #{part.sever_hitzone}
+                    td.bordered #{part.blunt_hitzone}
+                    td.bordered #{part.shot_hitzone}
+                    td.bordered #{part.fire_hitzone}
+                    td.bordered #{part.water_hitzone}
+                    td.bordered #{part.thunder_hitzone}
+                    td.bordered #{part.ice_hitzone}
+                    td.bordered #{part.dragon_hitzone}
+    h2 Materials
+    div.loot-table
+        ul.loot-grid
+            each item in drops 
+                li.bordered.paddeded
+                    a(href="/items/" + item.item) #{item.item}
+
+    h2 Quest Appearances as Target
+    div.quests
+        table.bordered
+            tr.bordered 
+                th Quest 
+                th HP 
+                th Target Type 
+            each quest in targetQuests 
+                tr
+                    td
+                        a(href="/quests/" + quest.quest_id) #{quest.quest_rank}⭐ #{quest.quest_name}
+                    td #{quest.hitpoints}
+                    td #{quest.target_type}
+
+    h2 Other Quest Appearances
+    div.quests
+        table.bordered
+            tr.bordered 
+                th Quest 
+                th HP 
+                th Target Type 
+            each quest in otherQuests 
+                tr
+                    td
+                        a(href="/quests/" + quest.quest_id) #{quest.quest_rank}⭐ #{quest.quest_name}
+                    td #{quest.hitpoints}
+                    td #{quest.target_type}
+
+
+    a(href=".") Go Back

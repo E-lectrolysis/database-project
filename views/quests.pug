@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title
+    meta(name="author" content="")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href="css/style.css" rel="stylesheet")
+  body
+    div
+        ul
+            each quest in results
+                li
+                    a(href="/quests/" +quest.quest_id)
+                        h2 #{quest.quest_rank}⭐ #{quest.quest_name}

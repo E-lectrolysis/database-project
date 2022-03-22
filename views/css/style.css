@@ -1,0 +1,12 @@
+.home-items {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+}
+
+body.home-body {
+    display: block;
+    margin:auto;
+    align-content: center;
+    justify-content: center;
+}

@@ -26,6 +26,21 @@ router.get('/quests', function(req, res, next) {
     res.render('quests', {results});
 });
 
+router.get('/quests/:quest', function(req, res, next) {
+    let quest = dbfunctions.getQuest(req.params.quest);
+    let targetMonsters = dbfunctions.getTargetMonsters(req.params.quest);
+    let otherMonsters = dbfunctions.getOtherMonsters(req.params.quest);
+    let leaderboard = dbfunctions.getLeaderboardForQuest(req.params.quest);
+    res.render('quest', {quest, targetMonsters, otherMonsters, leaderboard});
+});
+
+router.post('/quests/submit', function(req, res, next) {
+    let submission = req.body;
+    dbfunctions.addLeaderboardEntry(submission);
+    res.sendStatus(200);
+});
+
+
 router.get('/items/:item', function(req, res, next) {
     let item = dbfunctions.getItem(req.params.item);
     let drops = dbfunctions.getLootTableFromItem(req.params.item);

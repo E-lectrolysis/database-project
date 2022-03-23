@@ -35,6 +35,9 @@ dt {
     font-weight: bold;
 }
 
+dd {
+}
+
 th {
     padding: 10px;
     text-align: left;
@@ -57,6 +60,10 @@ li.paddeded {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.leaderboard-form {
+}
+
+.timeinput {}
 
 .bordered {
     border-collapse: collapse;

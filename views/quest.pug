@@ -1,0 +1,96 @@
+-let weaponList = ["Great Sword", "Long Sword", "Sword & Shield", "Dual Blades", "Hammer", "Hunting Horn", "Lance", "Gunlance", "Switch Axe", "Charge Blade", "Insect Glaive", "Light Bowgun", "Heavy Bowgun"];
+
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title
+    meta(name="author" content="")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href="/css/style.css" rel="stylesheet")
+  body
+    script(src="/javascripts/submission.js") 
+    h1 #{quest.quest_name} 
+    input#quest-id(type="hidden" value=quest.quest_id)
+    div.monster-info
+        dl
+            dt Rank
+            dd #{quest.quest_rank}★
+            dt Client
+            dd #{quest.client}
+            dt Objective 
+            dd #{quest.objective}
+            dt Locale 
+            dd #{quest.location}
+            dt Reward 
+            dd #{quest.reward}Z
+
+        dl
+            dt Description
+            dd #{quest.quest_desc}
+    h2 Target Monsters
+    div.quests 
+        table.bordered
+            tr.bordered 
+                th Monster
+                th HP 
+                th Target Type 
+            each monster in targetMonsters 
+                tr
+                    td
+                        a(href="/monsters/" + monster.monster) #{monster.monster}
+                    td #{monster.hitpoints}
+                    td #{monster.target_type}
+    h2 Other Monsters
+    div.quests 
+        table.bordered
+            tr.bordered 
+                th Monster
+                th HP 
+                th Target Type 
+            each monster in otherMonsters 
+                tr
+                    td
+                        a(href="/monsters/" + monster.monster) #{monster.monster}
+                    td #{monster.hitpoints}
+                    td #{monster.target_type}
+    
+
+    h2 Leaderboards 
+    div.leaderboard
+        table.bordered
+            tr.bordered
+                th Name 
+                th Weapon 
+                th Time 
+                th Date
+            each player in leaderboard
+                tr.bordered 
+                    td #{player.player_name}
+                    td #{player.weapon_used}
+                    td #{player.time}
+                    td #{player.date_submitted}
+    
+    h2 Leaderboard submission
+    form.leaderboard-form(onsubmit="return submission()")
+        label(for="name") Name: 
+        input#username(type="text" name="name" placeholder="Name" required) 
+        .timeinput 
+            label(for="minutes") Clear Time: 
+            input#minutes(type="number" name="minutes" placeholder="Min" min=0 max=50 required) 
+            input#seconds(type="number" name="seconds" placeholder="Sec" min=0 max=59 required) 
+            input#miliseconds(type="number" name="miliseconds" placeholder="ms" min=0 max=99 required) 
+        label(for="weapon") Weapon:
+        select#weapon(name="weapon" required)
+            each item in weaponList 
+                option(value=item) #{item}
+        br
+
+        button#submit(type="submit") Submit
+
+    
+    br
+    br
+    a(href=".") Go Back

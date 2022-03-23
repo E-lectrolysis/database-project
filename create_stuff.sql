@@ -585,7 +585,7 @@ INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
 VALUES ('Rathalos', 13, 18240, 'Other');
 
 INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Amadeus', 'Hunting Horn', '4:03:91', '2022-03-20');
+VALUES (11, 'Chad', 'Great Sword', '4:03:91', '2022-03-20');
 INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
 VALUES (11, 'Lyra', 'Hunting Horn', '4:03:90', '2022-03-20');
 INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 

@@ -36,6 +36,7 @@ router.get('/quests/:quest', function(req, res, next) {
 
 router.post('/quests/submit', function(req, res, next) {
     let submission = req.body;
+    console.log(submission);
     dbfunctions.addLeaderboardEntry(submission);
     res.sendStatus(200);
 });
@@ -45,6 +46,11 @@ router.get('/items/:item', function(req, res, next) {
     let item = dbfunctions.getItem(req.params.item);
     let drops = dbfunctions.getLootTableFromItem(req.params.item);
     res.render('item', {item, drops});
+});
+
+router.get('/items/', function(req, res, next) {
+    let results = dbfunctions.getItems();
+    res.render('items', {results});
 });
 
 module.exports = router;

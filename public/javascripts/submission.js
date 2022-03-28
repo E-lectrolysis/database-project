@@ -1,17 +1,18 @@
 function submission() {
     let name = document.getElementById("username").value;
     let questID = document.getElementById("quest-id").value;
-    let mins = "" + document.getElementById("minutes").value;
-    let secs = "" + document.getElementById("seconds").value;
-    let ms = "" + document.getElementById("miliseconds").value;
+    let minutes = document.getElementById("minutes").value;
+    let seconds = document.getElementById("seconds").value;
+    let ms = document.getElementById("milliseconds").value;
     let weapon = document.getElementById("weapon").value;
-    let totalTime = mins + ":" + secs.padStart(2, 0) + ":" + ms.padStart(2,0);
 
     let sendObj = {
         "questID":questID,
         "playerName":name,
         "weapon":weapon,
-        "totalTime":totalTime
+        "minutes":minutes,
+        "seconds":seconds,
+        "ms":ms
     };
     let request = new XMLHttpRequest();
     console.log(sendObj);

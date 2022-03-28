@@ -1,18 +1,16 @@
 doctype html
 html
-  head
+head
     meta(charset="utf-8")
     title
     meta(name="author" content="")
     meta(name="description" content="")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(href="css/style.css" rel="stylesheet")
-  body.home-body()
-    div.home-items
-      h1 MONSTER HUNTER RISE DB
-      a(href="./monsters")
-        h1 Monsters
-      a(href="./quests")
-        h1 Quests
-      a(href="./items")
-        h1 Items
+body
+    div.container
+        ul.monsters 
+            each item in results
+                li.monster
+                    a(href="/items/" + item.item)
+                        p #{item.item}

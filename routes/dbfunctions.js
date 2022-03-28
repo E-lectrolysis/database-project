@@ -69,8 +69,13 @@ function getOtherMonsters(questId) {
 }
 
 function getLeaderboardForQuest(questId) {
-    let stmt = db.prepare("SELECT player_name, weapon_used, time, date_submitted from leaderboard WHERE quest_id = ? ORDER BY length(time) ASC, time ASC");
+    let stmt = db.prepare("SELECT player_name, weapon_used, minutes, seconds, milliseconds, date_submitted from leaderboard WHERE quest_id = ? ORDER BY minutes ASC, seconds ASC, milliseconds ASC");
     return stmt.all(questId);
+}
+
+function getItems() {
+    let stmt = db.prepare("SELECT item from items");
+    return stmt.all();
 }
 
 function addLeaderboardEntry(submission) {
@@ -80,14 +85,10 @@ function addLeaderboardEntry(submission) {
     let y = today.getFullYear();
 
     let dateString = y + '-' + m + '-' + d;
-    console.log(submission.questID);
-    console.log(submission.playerName);
-    console.log(submission.weapon);
-    console.log(submission.totalTime);
-    console.log(dateString);
-    let stmt = db.prepare("INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) VALUES (?, ?, ?, ?, ?)");
-    
-    const info = stmt.run(submission.questID, submission.playerName, submission.weapon, submission.totalTime, dateString);
+    let stmt = db.prepare("INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    console.log(submission);
+    console.log(stmt);
+    const info = stmt.run(submission.questID, submission.playerName, submission.weapon, submission.minutes, submission.seconds, submission.ms, dateString);
 
 }
 module.exports = {
@@ -105,5 +106,6 @@ module.exports = {
     getQuest,
     getLeaderboardForQuest,
     getOtherMonsters,
+    getItems,
     addLeaderboardEntry
 }

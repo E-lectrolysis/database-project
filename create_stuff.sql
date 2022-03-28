@@ -44,7 +44,9 @@ CREATE TABLE leaderboard(
     quest_id INTEGER NOT NULL REFERENCES quests(quest_id),
     player_name TEXT NOT NULL,
     weapon_used TEXT NOT NULL,
-    time TEXT NOT NULL,
+    minutes INTEGER NOT NULL,
+    seconds INTEGER NOT NULL,
+    milliseconds INTEGER NOT NULL,
     date_submitted TEXT NOT NULL
 );
 
@@ -126,6 +128,20 @@ VALUES ('Wind Serpent Ibushi', 'Elder Dragon',
 'A male elder dragon that exhibits inexplicable behaviors such as floating upside down midair. Research indicates that the emission of a special gas from all over its body, and the modulation of this gas, is what allows it to move freely. It shoots air from gills on its arms and tail to fly, creating its own turbulence and soaring to great heights.',
 9);
 
+INSERT INTO monsters (name, category, description, threat_level)
+VALUES ('Rakna-Kadaki', 'Temnoceran', 
+'A Rakna-Kadaki is usually seen covered in sticky webbing. Clinging to its abdomen are its offspring, known as Rachnoid, which it controls using the flammable gas that builds up there. Rachnoid spit fire, capture prey, and support the Rakna-Kadaki''s massive body. As their numbers dwindle, the beast will hatch more, at which point it is extremely dangerous.',
+7);
+
+INSERT INTO monsters (name, category, description, threat_level)
+VALUES ('Rachnoid', 'Temnoceran', 
+'The infant form of Rakna-Kadaki. At this stage in their life cycle, they cling to their mother''s abdomen, feeding on scraps of her regurgitated prey. From birth, they are instantly able to spit webs that are just as strong as their mother''s, which they use to bind prey or swiftly move about at her command.',
+0);
+
+INSERT INTO monsters (name, category, description, threat_level)
+VALUES('Magnamalo', 'Fanged Wyvern', 
+'A monster with a carapace like tempered steel armor. The vapor around it is actually the expelling of trapped gases from the hordes of monsters Magnamalo has consumed. This has earned it the moniker "Wyvern of Malice." Its shrouded swings can inflict hellfireblight, which causes one to combust either spontaneously or when hit. Use a Deodorant or a Wirebug to rid yourself of hellfire.',
+7);
 
 --monster hitzones
 
@@ -321,6 +337,55 @@ VALUES ('Wind Serpent Ibushi', 'Tail tip (Windsac)', 50, 45, 40, 25, 15, 5, 15, 
 INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
 VALUES ('Wind Serpent Ibushi', 'Tail tip (Windsac Broken)', 25, 25, 15, 15, 5, 5, 5, 15);
 
+--Rakna-Kadaki
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Head', 65, 70, 45, 0, 10, 0, 20, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Chest', 25, 25, 10, 0, 5, 0, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Pedipalps', 20, 20, 10, 0, 15, 0, 30, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Pedipalps (Broken)', 20, 20, 10, 0, 5, 0, 20, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Abdomen', 35, 35, 15, 0, 5, 0, 10, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Abdomen (Sac)', 50, 50, 28, 0, 0, 0, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Legs', 25, 25, 15, 0, 5, 0, 15, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rakna-Kadaki', 'Legs (Broken)', 43, 43, 35, 0, 0, 0, 5, 0);
+
+--Rachnoid
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Rachnoid', 'Body', 45, 45, 35, 0, 40, 30, 10, 10);
+
+--Magnamalo
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Head', 55, 55, 30, 0, 15, 10, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Head (Hellfire)', 60, 60, 45, 0, 10, 15, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Torso', 25, 25, 5, 0, 20, 15, 10, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Foreleg', 38, 38, 20, 0, 20, 15, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Foreleg (Hellfire)', 48, 48, 45, 0, 10, 15, 0, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Armblade', 45, 45, 45, 0, 10, 10, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Armblade (Hellfire)',48, 48, 45, 0, 10, 15, 0, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Back', 30, 43, 15, 0, 15, 10, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Back (Hellfire)', 63, 63, 50, 0, 5, 10, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Hind Legs', 38, 38, 20, 0, 25, 25, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Tail', 43, 30, 10, 0, 15, 10, 5, 0);
+INSERT INTO body_parts (monster_name, body_part, sever_hitzone, blunt_hitzone, shot_hitzone, fire_hitzone, water_hitzone, thunder_hitzone, ice_hitzone, dragon_hitzone)
+VALUES ('Magnamalo', 'Tailblade', 45, 45, 45, 0, 10, 10, 5, 0);
+
+
 --Items and loot tables
 
 --Great Izuchi
@@ -432,6 +497,121 @@ INSERT INTO loot_table(monster, item)
 VALUES ('Rathian', 'Rath Wingtalon+');
 INSERT INTO loot_table(monster, item)
 VALUES ('Rathian', 'Rathian Ruby');
+
+--Rakna-Kadaki
+INSERT INTO items(item, description)
+VALUES ('Rakna-Kadaki Silk', 'Quality Rakna-Kadaki silk. A garb woven from this silk is sure to cushion any blow.');
+INSERT INTO items(item, description)
+VALUES ('Rakna-Kadaki Glowgut', 'A Rakna-Kadaki organ that glows alluringly, but burns with magmatic heat.');
+INSERT INTO items(item, description)
+VALUES ('Rakna-Kadaki Carapace', 'Hard, heavy Rakna-Kadaki carapace sometimes used in weapons and armor.');
+INSERT INTO items(item, description)
+VALUES ('Rakna-Kadaki Spike', 'A spike that has a charming curve. Used in weapons as well as for decoration.');
+INSERT INTO items(item, description)
+VALUES ('Monster Broth', 'A broth made from only the thickest of a monster''s juices. Quite rich.');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Rakna-Kadaki', 'Rakna-Kadaki Silk');
+INSERT INTO loot_table(monster, item)
+VALUES('Rakna-Kadaki', 'Rakna-Kadaki Glowgut');
+INSERT INTO loot_table(monster, item)
+VALUES('Rakna-Kadaki', 'Rakna-Kadaki Carapace');
+INSERT INTO loot_table(monster, item)
+VALUES('Rakna-Kadaki', 'Rakna-Kadaki Spike');
+INSERT INTO loot_table(monster, item)
+VALUES('Rakna-Kadaki', 'Monster Broth');
+
+--Rachnoid
+INSERT INTO items(item, description)
+VALUES ('Rachnoid Silk', 'Silk shot by Rachnoid. Its high tensile strength makes it stronger than it looks.');
+INSERT INTO items(item, description)
+VALUES ('Sharp Claw', 'A shining black claw. Unlike wyvern claws, this is shaped to grip objects.');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Rachnoid', 'Rachnoid Silk');
+INSERT INTO loot_table(monster, item)
+VALUES('Rachnoid', 'Sharp Claw');
+INSERT INTO loot_table(monster, item)
+VALUES('Rachnoid', 'Monster Broth');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Jagras', 'Sharp Claw');
+
+--Volvidon
+INSERT INTO items(item, description)
+VALUES ('Volvidon Shell', 'The heat-resistant shell of a Volvidon. Unaffected even by boiling lava.');
+INSERT INTO items(item, description)
+VALUES ('Volvidon Carapace', 'A thick Volvidon carapace. The elasticity means forging it requires severe pressure.');
+INSERT INTO items(item, description)
+VALUES('Volvidon Claw', 'A claw from a Volvidon''s foreleg. Dramatically raises the power of a wide swing.');
+INSERT INTO items(item, description)
+VALUES('Volvidon Claw+', 'A hard, sharp Volvidon claw. Constant exposure to heat has tempered it like steel.');
+INSERT INTO items(item, description)
+VALUES('Volvidon Rickrack', 'The jagged shell of a Volvidon''s back. Its high elasticity makes it ideal for crafting flexible gear.');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Volvidon Shell');
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Volvidon Carapace');
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Volvidon Claw');
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Volvidon Claw+');
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Volvidon Rickrack');
+INSERT INTO loot_table(monster, item)
+VALUES('Volvidon', 'Monster Broth');
+
+--Magnamalo
+INSERT INTO items(item, description)
+VALUES ('Magnamalo Scale', 'Sturdy and small Magnamalo scale that is flexible and resistant to fangs.');
+INSERT INTO items(item, description)
+VALUES ('Magnamalo Scale+', 'Glows a piercing purple, imbued with the beast''s infinite fighting spirit.');
+INSERT INTO items(item, description)
+VALUES ('Magnamalo Blade', 'A claw that has grown into a blade shape on Magnamalo''s forearm. Already very sharp.');
+INSERT INTO items(item, description)
+VALUES ('Magnamalo Blade+', 'Honed by blood, these arm blades cut prey in two with a single swipe.');
+INSERT INTO items(item, description)
+VALUES ('Magna Soulprism', 'A crystal of condensed gas. Its quiet exterior belies its savage explosive power.');
+INSERT INTO items(item, description)
+VALUES ('Purple Magna Orb', 'This jewel glows a sinister purple as though holding many unfortunate souls.');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Magnamalo Scale');
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Magnamalo Scale+');
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Magnamalo Blade');
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Magnamalo Blade+');
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Magna Soulprism');
+INSERT INTO loot_table(monster, item)
+VALUES('Magnamalo', 'Purple Magna Orb');
+
+--Valstrax
+INSERT INTO items(item, description)
+VALUES ('Shimmering Scale', 'Valstrax scale slightly tinged by the crimson eclipse. Portends disaster.');
+INSERT INTO items(item, description)
+VALUES ('Valstrax Claw+', 'This piece of Valstrax claw is remarkably hard and sharp. It''s torn up countless peacetimes.');
+INSERT INTO items(item, description)
+VALUES ('Crimson Liquid', 'Merely touching this boiling hot draconic fluid fills your mind with catastrophe.');
+INSERT INTO items(item, description)
+VALUES ('Red Dragon Orb', 'The source of evil heavenly omens. Fly fleetly, as a comet ''cross the skies.');
+INSERT INTO items(item, description)
+VALUES ('Rouge Spikewing', 'Touched by the crimson eclipse, this wing phases in an otherwordly fashion.');
+
+INSERT INTO loot_table(monster, item)
+VALUES('Crimson Glow Valstrax', 'Shimmering Scale');
+INSERT INTO loot_table(monster, item)
+VALUES('Crimson Glow Valstrax', 'Valstrax Claw+');
+INSERT INTO loot_table(monster, item)
+VALUES('Crimson Glow Valstrax', 'Crimson Liquid');
+INSERT INTO loot_table(monster, item)
+VALUES('Crimson Glow Valstrax', 'Red Dragon Orb');
+INSERT INTO loot_table(monster, item)
+VALUES('Crimson Glow Valstrax', 'Rouge Spikewing');
+
 
 INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
 VALUES (1, 'Jumped In The Frost Islands', 'Hunter Hiding Behind A Bush', 'Hunt a Great Izuchi', 1, 
@@ -555,7 +735,7 @@ VALUES ('Tigrex', 11, 17100, 'Other');
 INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
 VALUES ('Rathian', 11, 16300, 'Other'); -- probably inaccurate
 INSERT INTO quest_monsters (monster, quest, hitpoints, target_type) 
-VALUES ('Volvidon', 11, 16260, 'Other'); --probably inaccurate
+VALUES ('Rakna-Kadaki', 11, 20900, 'Other'); 
 
 INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
 VALUES (12, 'The Evil Star from Beyond', 'Scarred Old Woman', 'Slay a Crimson Glow Valstrax', 7,
@@ -567,6 +747,8 @@ INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
 VALUES ('Tigrex', 12, 17100, 'Other');
 INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
 VALUES ('Rathalos', 12, 18240, 'Other');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type) 
+VALUES ('Rakna-Kadaki', 12, 20900, 'Other'); 
 
 INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
 VALUES (13, 'Most Certainly a Legitimate Quest', 'Who Knows?', 'Slay all target monsters', 7,
@@ -584,36 +766,110 @@ VALUES ('Rathian', 13, 13500, 'Capture');
 INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
 VALUES ('Rathalos', 13, 18240, 'Other');
 
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Chad', 'Great Sword', '4:03:91', '2022-03-20');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Lyra', 'Hunting Horn', '4:03:90', '2022-03-20');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Lyra', 'Hunting Horn', '4:04:01', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Lyra', 'Bow', '5:02:21', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Eric', 'Insect Glaive', '4:04:06', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'lati', 'Dual Blades', '4:52:89', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Altair', 'Gunlance', '6:09:08', '2022-03-23');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (7, 'Eric', 'Light Bowgun', '2:52:65', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (7, 'Altair', 'Lance', '3:21:11', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (7, 'lati', 'Great Sword', '3:25:01', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (7, 'Altair', 'Heavy Bowgun', '2:21:11', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time, date_submitted) 
-VALUES (11, 'Someone', 'Switch Axe', '4:32:02', '2022-03-20');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time,date_submitted) 
-VALUES (11, 'Larza', 'Long Sword', '4:20:69', '2022-03-20');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time,date_submitted) 
-VALUES (12, 'Altair', 'Charge Blade', '4:35:22', '2022-03-19');
-INSERT INTO leaderboard (quest_id, player_name, weapon_used, time,date_submitted) 
-VALUES (13, 'Lyra', 'Hunting Horn', '8:02:44', '2022-03-20');
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (14, 'Hellfire', 'Guild Master Hojo', 'Hunt Magnamalo', 3,
+'That dreadful Magnamalo has been spotted! Quick, Hunter, you must leap into action at once! We cannot allow it to feed on the hordes or it may become too powerful to defeat! No time to waste! Hop to it-to it!',
+'Lava Caverns', 8640);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Magnamalo', 14, 8415, 'Hunt');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathian', 14, 7605, 'Other');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Volvidon', 14, 6422, 'Other');
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (15, 'Clad in Hellfire', 'Armored Hunter', 'Hunt Magnamalo', 7, 
+'What an embarrassment. My best armor was about as effective as wet paper against Magnamalo. I tell ya, that hellfire is a one-way ticket back to camp... I guess I need to hit up the Smithy again. Think you can finish up the quest for me?',
+'Shrine Ruins', 12240);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Magnamalo', 15, 16200, 'Hunt');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Aknosom', 15, 15300, 'Other');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathalos', 16, 16320, 'Other');
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (16, 'A Blaze Among Beasts', 'Fugen the Elder', 'Hunt all Target Monsters', 7,
+'Got a real challenge here for ya, Squirt! Bwahaha! Look at those ears perk up! I knew it''d be right up your alley! Best these beasties and ol'' Fugen will give ya a new Petalace. Sounds good, don''t it!? Now go get to it!',
+'Lava Caverns', 22320);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathian', 16, 11115, 'Hunt');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Tigrex', 16, 10575, 'Hunt');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rakna-Kadaki', 16, 12595, 'Hunt'); 
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (17, 'Can''t Kill It with Fire', 'Guild Master Hojo', 'Hunt a Rakna-Kadaki', 7, 
+'Rakna-Kadaki inhabit a select few regions, and yet one has just been sighted in the Lava Caverns... I just don''t get it-get it! All of this strange activity around the region. And now Minoto is acting strange as well...',
+'Lava Caverns', 12240);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rakna-Kadaki', 17, 19800, 'Hunt'); 
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathalos', 17, 16320, 'Other'); 
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (18, 'Advanced: The Fallen Comet', 'Amateur Stargazer', 'Hunt a Rakna-Kadaki and Slay a Crimson Glow Valstrax', 7,
+'Oh, wow! I just saw a comet fall into the Lava Caverns! While I really wanna check it out, I''m also not trying to go there by myself. Not with all the creepy crawly things that live there. Hey, what if it wasn''t a comet but that legendary elder dragon!? C''mon! Let''s go!',
+'Lava Caverns', 27360);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rakna-Kadaki', 18, 15950, 'Hunt'); 
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Crimson Glow Valstrax', 18, 13630, 'Slay'); 
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathian', 18, 17100, 'Other');
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Tigrex', 18, 17100, 'Other');
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (19, 'Roly-Poly Lanterns', 'Girly Village Maiden', 'Deliver 8 Firelanterns', 1,
+'Firelanterns are, like, so pretty! So red. So round. Something about them is simply magical. I totally wanna see them all the time so maybe I should put ''em in my room? What do you say? Think you can get me some?',
+'Shrine Ruins', 240);
+
+INSERT INTO quests (quest_id, quest_name, client, objective, quest_rank, quest_desc, location, reward)
+VALUES (20, 'The Path to Royalty', 'Aspiring Monarch', 'Hunt a Rathian', 2, 
+'Oh, what I wouldn''t give to be a queen! "Queen of the Land"? Who wouldn''t love a title like that!? Perhaps I may learn a thing or two from the queen herself! Valiant Knight of Kamura! I order you to hunt a Rathian!',
+'Flooded Forest', 5400);
+
+INSERT INTO quest_monsters (monster, quest, hitpoints, target_type)
+VALUES ('Rathian', 20, 7605, 'Hunt');
+
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Chad', 'Great Sword', 4, 3, 91, '2022-03-20');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Lyra', 'Hunting Horn', 4, 3, 90, '2022-03-20');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Lyra', 'Hunting Horn', 4, 4, 02, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Lyra', 'Bow', 5, 2, 21, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Eric', 'Insect Glaive', 4, 4, 6, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'lati', 'Dual Blades', 4, 20, 69, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Altair', 'Gunlance', 6, 9, 8, '2022-03-23');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (7, 'Eric', 'Light Bowgun', 2, 52, 56, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (7, 'Altair', 'Lance', 3, 21, 11, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (7, 'lati', 'Great Sword', 3, 25, 1, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (7, 'Altair', 'Heavy Bowgun', 2, 21, 72, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (12, 'Someone', 'Switch Axe', 4, 32, 2, '2022-03-20');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted)  
+VALUES (12, 'Larza', 'Long Sword', 4, 3, 90, '2022-03-20');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (11, 'Altair', 'Charge Blade', 4, 35, 32, '2022-03-19');
+INSERT INTO leaderboard (quest_id, player_name, weapon_used, minutes, seconds, milliseconds, date_submitted) 
+VALUES (13, 'Lyra', 'Hunting Horn', 8, 2, 44, '2022-03-20');
 
 
 

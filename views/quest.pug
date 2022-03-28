@@ -70,7 +70,7 @@ html
                 tr.bordered 
                     td #{player.player_name}
                     td #{player.weapon_used}
-                    td #{player.time}
+                    td #{player.minutes}'#{(player.seconds+"").padStart(2, '0')}"#{(player.milliseconds+"").padStart(2, '0')}
                     td #{player.date_submitted}
     
     h2 Leaderboard submission
@@ -81,7 +81,7 @@ html
             label(for="minutes") Clear Time: 
             input#minutes(type="number" name="minutes" placeholder="Min" min=0 max=50 required) 
             input#seconds(type="number" name="seconds" placeholder="Sec" min=0 max=59 required) 
-            input#miliseconds(type="number" name="miliseconds" placeholder="ms" min=0 max=99 required) 
+            input#milliseconds(type="number" name="milliseconds" placeholder="ms" min=0 max=99 required) 
         label(for="weapon") Weapon:
         select#weapon(name="weapon" required)
             each item in weaponList 
